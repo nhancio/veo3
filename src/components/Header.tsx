@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Video, Zap, CreditCard } from 'lucide-react';
+import { Menu, X, Video, CreditCard } from 'lucide-react';
+import { useAuth } from '../utils/useAuth';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const { user, profile, loading, login, logout } = useAuth();
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -57,16 +59,36 @@ const Header = () => {
             >
               Pricing
             </Link>
-            
             <div className="flex items-center space-x-4 ml-8">
-              <div className="flex items-center space-x-2 bg-gray-900/50 border border-gray-700 px-4 py-2 rounded-full backdrop-blur-sm">
-                <CreditCard className="w-5 h-5 text-cyan-400" />
-                <span className="text-lg font-semibold text-cyan-400">2,500</span>
-                <span className="text-gray-400">credits</span>
-              </div>
-              <button className="bg-gradient-to-r from-cyan-500 to-purple-500 text-black px-6 py-3 rounded-full font-semibold hover:from-cyan-400 hover:to-purple-400 transition-all duration-300 transform hover:scale-105 glow-button">
-                Upgrade
-              </button>
+              {user && profile && (
+                <div className="flex items-center space-x-2 bg-gray-900/50 border border-gray-700 px-4 py-2 rounded-full backdrop-blur-sm">
+                  <CreditCard className="w-5 h-5 text-cyan-400" />
+                  <span className="text-lg font-semibold text-cyan-400">{profile.credit_balance}</span>
+                  <span className="text-gray-400">credits</span>
+                </div>
+              )}
+              {!user && !loading && (
+                <button
+                  onClick={login}
+                  className="bg-gradient-to-r from-cyan-500 to-purple-500 text-black px-6 py-3 rounded-full font-semibold hover:from-cyan-400 hover:to-purple-400 transition-all duration-300 transform hover:scale-105 glow-button"
+                >
+                  Login
+                </button>
+              )}
+              {user && !loading && (
+                <div className="flex items-center space-x-3">
+                  {profile?.avatar_url && (
+                    <img src={profile.avatar_url} alt="avatar" className="w-8 h-8 rounded-full border border-cyan-400" />
+                  )}
+                  <span className="text-gray-200 font-medium">{profile?.full_name || user.email}</span>
+                  <button
+                    onClick={logout}
+                    className="bg-gradient-to-r from-purple-500 to-cyan-500 text-black px-4 py-2 rounded-full font-semibold hover:from-purple-400 hover:to-cyan-400 transition-all duration-300 ml-2"
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
             </div>
           </nav>
 
@@ -88,13 +110,34 @@ const Header = () => {
               <Link to="/my-creations" className="block text-xl font-medium text-gray-300 hover:text-cyan-400 transition-colors">My Creations</Link>
               <Link to="/pricing" className="block text-xl font-medium text-gray-300 hover:text-cyan-400 transition-colors">Pricing</Link>
               <div className="pt-4 border-t border-gray-800">
-                <div className="flex items-center space-x-2 mb-4">
-                  <CreditCard className="w-5 h-5 text-cyan-400" />
-                  <span className="text-lg font-semibold text-cyan-400">2,500 credits</span>
-                </div>
-                <button className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 text-black px-6 py-3 rounded-full font-semibold">
-                  Upgrade
-                </button>
+                {user && profile && (
+                  <div className="flex items-center space-x-2 mb-4">
+                    <CreditCard className="w-5 h-5 text-cyan-400" />
+                    <span className="text-lg font-semibold text-cyan-400">{profile.credit_balance} credits</span>
+                  </div>
+                )}
+                {!user && !loading && (
+                  <button
+                    onClick={login}
+                    className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 text-black px-6 py-3 rounded-full font-semibold"
+                  >
+                    Login
+                  </button>
+                )}
+                {user && !loading && (
+                  <div className="flex items-center space-x-3 mt-2">
+                    {profile?.avatar_url && (
+                      <img src={profile.avatar_url} alt="avatar" className="w-8 h-8 rounded-full border border-cyan-400" />
+                    )}
+                    <span className="text-gray-200 font-medium">{profile?.full_name || user.email}</span>
+                    <button
+                      onClick={logout}
+                      className="bg-gradient-to-r from-purple-500 to-cyan-500 text-black px-4 py-2 rounded-full font-semibold hover:from-purple-400 hover:to-cyan-400 transition-all duration-300 ml-2"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           </div>
