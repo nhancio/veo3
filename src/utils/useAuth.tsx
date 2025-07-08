@@ -3,7 +3,7 @@ import React from 'react';
 import supabase from './supabase';
 
 export type Profile = {
-  user_id: string;
+  id: string;
   full_name: string | null;
   avatar_url: string | null;
   credit_balance: number;
@@ -44,14 +44,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const { data, error } = await supabase
       .from('profiles')
       .select('*')
-      .eq('user_id', user.id)
+      .eq('id', user.id)
       .single();
     if (error && error.code === 'PGRST116') {
       // No profile, create one
       const { data: newProfile } = await supabase
         .from('profiles')
         .insert({
-          user_id: user.id,
+          id: user.id,
           full_name: user.user_metadata?.full_name || user.email,
           avatar_url: user.user_metadata?.avatar_url || null,
           credit_balance: 50, // default credits

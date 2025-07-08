@@ -5,6 +5,7 @@ import { useAuth } from '../utils/useAuth';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
   const location = useLocation();
   const { user, profile, loading, login, logout } = useAuth();
 
@@ -63,7 +64,7 @@ const Header = () => {
               {user && profile && (
                 <div className="flex items-center space-x-2 bg-gray-900/50 border border-gray-700 px-4 py-2 rounded-full backdrop-blur-sm">
                   <CreditCard className="w-5 h-5 text-cyan-400" />
-                  <span className="text-lg font-semibold text-cyan-400">{profile.credit_balance}</span>
+                  <span className="text-lg font-semibold text-cyan-400">{profile.credits ?? profile.credit_balance}</span>
                   <span className="text-gray-400">credits</span>
                 </div>
               )}
@@ -76,17 +77,36 @@ const Header = () => {
                 </button>
               )}
               {user && !loading && (
-                <div className="flex items-center space-x-3">
-                  {profile?.avatar_url && (
-                    <img src={profile.avatar_url} alt="avatar" className="w-8 h-8 rounded-full border border-cyan-400" />
-                  )}
-                  <span className="text-gray-200 font-medium">{profile?.full_name || user.email}</span>
+                <div className="relative">
                   <button
-                    onClick={logout}
-                    className="bg-gradient-to-r from-purple-500 to-cyan-500 text-black px-4 py-2 rounded-full font-semibold hover:from-purple-400 hover:to-cyan-400 transition-all duration-300 ml-2"
+                    onClick={() => setShowProfile((v) => !v)}
+                    className="flex items-center space-x-2 bg-gray-900/50 border border-gray-700 px-4 py-2 rounded-full hover:border-cyan-400 transition-all"
                   >
-                    Logout
+                    {profile?.avatar_url && (
+                      <img src={profile.avatar_url} alt="avatar" className="w-8 h-8 rounded-full border border-cyan-400" />
+                    )}
+                    <span className="text-gray-200 font-medium">Profile</span>
                   </button>
+                  {showProfile && (
+                    <div className="absolute right-0 mt-2 w-64 bg-gray-900 border border-gray-700 rounded-xl shadow-lg p-4 z-50">
+                      <div className="flex flex-col items-center mb-4">
+                        {profile?.avatar_url && (
+                          <img src={profile.avatar_url} alt="avatar" className="w-16 h-16 rounded-full border-2 border-cyan-400 mb-2" />
+                        )}
+                        <span className="text-lg font-bold text-white">{profile?.full_name}</span>
+                        <span className="text-gray-400 text-sm">{user.email}</span>
+                      </div>
+                      <div className="flex flex-col items-center mb-4">
+                        <span className="text-cyan-400 font-semibold">Credits: {profile.credits ?? profile.credit_balance}</span>
+                      </div>
+                      <button
+                        onClick={logout}
+                        className="w-full bg-gradient-to-r from-purple-500 to-cyan-500 text-black px-4 py-2 rounded-full font-semibold hover:from-purple-400 hover:to-cyan-400 transition-all duration-300"
+                      >
+                        Logout
+                      </button>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
@@ -113,7 +133,7 @@ const Header = () => {
                 {user && profile && (
                   <div className="flex items-center space-x-2 mb-4">
                     <CreditCard className="w-5 h-5 text-cyan-400" />
-                    <span className="text-lg font-semibold text-cyan-400">{profile.credit_balance} credits</span>
+                    <span className="text-lg font-semibold text-cyan-400">{profile.credits ?? profile.credit_balance} credits</span>
                   </div>
                 )}
                 {!user && !loading && (
@@ -125,17 +145,36 @@ const Header = () => {
                   </button>
                 )}
                 {user && !loading && (
-                  <div className="flex items-center space-x-3 mt-2">
-                    {profile?.avatar_url && (
-                      <img src={profile.avatar_url} alt="avatar" className="w-8 h-8 rounded-full border border-cyan-400" />
-                    )}
-                    <span className="text-gray-200 font-medium">{profile?.full_name || user.email}</span>
+                  <div className="flex flex-col items-center mt-2">
                     <button
-                      onClick={logout}
-                      className="bg-gradient-to-r from-purple-500 to-cyan-500 text-black px-4 py-2 rounded-full font-semibold hover:from-purple-400 hover:to-cyan-400 transition-all duration-300 ml-2"
+                      onClick={() => setShowProfile((v) => !v)}
+                      className="flex items-center space-x-2 bg-gray-900/50 border border-gray-700 px-4 py-2 rounded-full hover:border-cyan-400 transition-all w-full justify-center"
                     >
-                      Logout
+                      {profile?.avatar_url && (
+                        <img src={profile.avatar_url} alt="avatar" className="w-8 h-8 rounded-full border border-cyan-400" />
+                      )}
+                      <span className="text-gray-200 font-medium">Profile</span>
                     </button>
+                    {showProfile && (
+                      <div className="mt-2 w-full bg-gray-900 border border-gray-700 rounded-xl shadow-lg p-4 z-50">
+                        <div className="flex flex-col items-center mb-4">
+                          {profile?.avatar_url && (
+                            <img src={profile.avatar_url} alt="avatar" className="w-16 h-16 rounded-full border-2 border-cyan-400 mb-2" />
+                          )}
+                          <span className="text-lg font-bold text-white">{profile?.full_name}</span>
+                          <span className="text-gray-400 text-sm">{user.email}</span>
+                        </div>
+                        <div className="flex flex-col items-center mb-4">
+                          <span className="text-cyan-400 font-semibold">Credits: {profile.credits ?? profile.credit_balance}</span>
+                        </div>
+                        <button
+                          onClick={logout}
+                          className="w-full bg-gradient-to-r from-purple-500 to-cyan-500 text-black px-4 py-2 rounded-full font-semibold hover:from-purple-400 hover:to-cyan-400 transition-all duration-300"
+                        >
+                          Logout
+                        </button>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>

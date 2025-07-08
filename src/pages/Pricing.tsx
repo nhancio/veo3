@@ -308,7 +308,7 @@ const Pricing = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 gap-8 max-w-4xl mx-auto">
             {faqs.map((faq, index) => (
               <div key={index} className="bg-gray-900/50 border border-gray-800 rounded-2xl p-8 backdrop-blur-sm hover:border-cyan-500/30 transition-all duration-300">
                 <h3 className="text-xl font-bold text-white mb-4 flex items-start space-x-3">

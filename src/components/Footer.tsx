@@ -199,10 +199,10 @@ const Footer = () => {
 
   return (
     <footer className="bg-gradient-to-t from-black to-gray-900 border-t border-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           {/* Logo and Description */}
-          <div className="space-y-6">
+          <div className="space-y-4">
             <div className="flex items-center space-x-3">
               <div className="relative">
                 <Video className="w-10 h-10 text-cyan-400" />
@@ -218,7 +218,7 @@ const Footer = () => {
             </p>
             
             {/* Enhanced Language Selector */}
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div className="flex items-center space-x-2 text-gray-400">
                 <Globe className="w-6 h-6" />
                 <span className="text-lg font-semibold">Choose Your Language & Region</span>
@@ -226,8 +226,8 @@ const Footer = () => {
               <select
                 value={selectedLanguage}
                 onChange={(e) => setSelectedLanguage(e.target.value)}
-                className="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-cyan-500 focus:border-transparent text-lg max-h-60 overflow-y-auto"
-                style={{ maxHeight: '240px' }}
+                className="w-full bg-gray-800 border border-gray-700 rounded-xl px-3 py-2 text-white focus:ring-2 focus:ring-cyan-500 focus:border-transparent text-base max-h-40 overflow-y-auto"
+                style={{ maxHeight: '160px' }}
               >
                 {languageGroups.map((group) => (
                   <optgroup key={group.name} label={group.name} className="text-cyan-400 font-semibold">
@@ -245,7 +245,7 @@ const Footer = () => {
             </div>
 
             {/* Social Links */}
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2 mt-2">
               <a href="#" className="w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center hover:bg-gray-700 transition-colors">
                 <Twitter className="w-6 h-6 text-gray-400 hover:text-cyan-400 transition-colors" />
               </a>
@@ -260,8 +260,8 @@ const Footer = () => {
 
           {/* Product */}
           <div>
-            <h3 className="text-2xl font-bold text-white mb-6">Product</h3>
-            <ul className="space-y-4">
+            <h3 className="text-2xl font-bold text-white mb-4">Product</h3>
+            <ul className="space-y-2">
               <li><a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors text-lg">Features</a></li>
               <li><a href="/pricing" className="text-gray-400 hover:text-cyan-400 transition-colors text-lg">Pricing</a></li>
               <li><a href="/generate" className="text-gray-400 hover:text-cyan-400 transition-colors text-lg">Generate</a></li>
@@ -273,8 +273,8 @@ const Footer = () => {
 
           {/* Company */}
           <div>
-            <h3 className="text-2xl font-bold text-white mb-6">Company</h3>
-            <ul className="space-y-4">
+            <h3 className="text-2xl font-bold text-white mb-4">Company</h3>
+            <ul className="space-y-2">
               <li><a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors text-lg">About</a></li>
               <li><a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors text-lg">Careers</a></li>
               <li><a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors text-lg">Blog</a></li>
@@ -288,8 +288,8 @@ const Footer = () => {
 
           {/* Legal & Support */}
           <div>
-            <h3 className="text-2xl font-bold text-white mb-6">Legal & Support</h3>
-            <ul className="space-y-4">
+            <h3 className="text-2xl font-bold text-white mb-4">Legal & Support</h3>
+            <ul className="space-y-2">
               <li><a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors flex items-center space-x-2 text-lg">
                 <FileText className="w-5 h-5" />
                 <span>Terms of Service</span>
@@ -309,16 +309,16 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-lg">
+        <div className="border-t border-gray-800 mt-8 pt-4 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-gray-400 text-base">
             © 2025 VeoAI. All rights reserved.
           </p>
-          <div className="flex items-center space-x-8 mt-6 md:mt-0">
-            <a href="mailto:hello@veoai.com" className="text-gray-400 hover:text-cyan-400 text-lg transition-colors">
+          <div className="flex items-center space-x-4 mt-4 md:mt-0">
+            <a href="mailto:hello@veoai.com" className="text-gray-400 hover:text-cyan-400 text-base transition-colors">
               hello@veoai.com
             </a>
             <span className="text-gray-600">•</span>
-            <span className="text-gray-400 text-lg">
+            <span className="text-gray-400 text-base">
               Made with ❤️ for creators worldwide
             </span>
           </div>
