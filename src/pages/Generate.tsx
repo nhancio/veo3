@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Upload, Wand2, Settings, Clock, Zap, Play, Download, Share2, RotateCcw } from 'lucide-react';
+import { generateFastSDXL } from '../utils/fal';
 
 const Generate = () => {
   const [prompt, setPrompt] = useState('');
@@ -7,14 +8,27 @@ const Generate = () => {
   const [generationMode, setGenerationMode] = useState('ultra');
   const [isGenerating, setIsGenerating] = useState(false);
   const [hasGenerated, setHasGenerated] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [debugInfo, setDebugInfo] = useState<string>('');
 
-  const handleGenerate = () => {
+  const handleGenerate = async () => {
     setIsGenerating(true);
-    // Simulate generation process
-    setTimeout(() => {
-      setIsGenerating(false);
+    setError(null);
+    setHasGenerated(false);
+    setDebugInfo('');
+    try {
+      setDebugInfo(prev => prev + `Request: {\n  prompt: \"${prompt}\"\n}\n`);
+      const result = await generateFastSDXL(prompt);
+      setDebugInfo(prev => prev + `Response: ${JSON.stringify(result, null, 2)}\n`);
+      // For now, just alert the result (can be improved to show video/image)
+      alert(JSON.stringify(result, null, 2));
       setHasGenerated(true);
-    }, 3000);
+    } catch (err: any) {
+      setError(err.message || 'Failed to generate video');
+      setDebugInfo(prev => prev + `Error: ${err.message || err}\n`);
+    } finally {
+      setIsGenerating(false);
+    }
   };
 
   const getCreditCost = () => {
@@ -173,6 +187,12 @@ const Generate = () => {
                   </>
                 )}
               </button>
+              {error && (
+                <div className="mt-4 text-red-400 text-center">{error}</div>
+              )}
+              {debugInfo && (
+                <pre className="mt-4 bg-gray-900 text-gray-200 p-4 rounded-xl text-xs overflow-x-auto max-h-60 whitespace-pre-wrap">{debugInfo}</pre>
+              )}
             </div>
           </div>
 
@@ -195,7 +215,7 @@ const Generate = () => {
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                      <button className="bg-white/20 backdrop-blur-sm rounded-full p-6 hover:bg-white/30 transition-colors">
+                      <button className="bg-white/20 backdrop-blur-sm rounded-full p-6 hover:bg-white/30 transition-colors" title="Play video preview">
                         <Play className="w-12 h-12 text-white" />
                       </button>
                     </div>
