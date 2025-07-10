@@ -1,9 +1,6 @@
 export async function generateFastSDXL(prompt: string) {
-  const apiKey = import.meta.env.VITE_FAL_API_KEY;
-  if (!apiKey) {
-    console.error('FAL API key is not set in environment variables');
-    throw new Error('FAL API key is not set in environment variables');
-  }
+  // Hardcoded FAL API key as requested
+  const apiKey = '8c19cbf7-505b-4321-8497-cbfe34903ead:3ce8658b8dfd0be94322990dce6f94c9';
 
   // Mask API key for logging
   const maskedKey = apiKey.slice(0, 8) + '...' + apiKey.slice(-4);
