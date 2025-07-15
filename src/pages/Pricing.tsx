@@ -1,5 +1,4 @@
-import React from 'react';
-import { Check, Star, Zap, Crown, Rocket, CreditCard, HelpCircle } from 'lucide-react';
+import { Check, Star, Zap, Crown, Rocket } from 'lucide-react';
 
 const Pricing = () => {
   const plans = [
@@ -67,56 +66,6 @@ const Pricing = () => {
     }
   ];
 
-  const faqs = [
-    {
-      question: "What is Veo 3?",
-      answer: "Veo 3 is Google's latest AI video generation model that creates high-quality, cinematic 8-second videos from text prompts or images. Our platform provides access to this cutting-edge technology with enhanced features like native audio generation, lip-sync capabilities, and physics-based realism for ultra-realistic video creation."
-    },
-    {
-      question: "What's the difference between VeoAI and Google Flow?",
-      answer: "We both use the official Google VEO 3 model, but Google Flow has daily limits while we don't. Our platform offers unlimited generations based on your credit plan, plus additional features like advanced audio instructions, commercial licensing, and priority processing queues for faster video generation."
-    },
-    {
-      question: "Can Veo 3 generate videos longer than 8 seconds?",
-      answer: "Currently, Veo 3 is optimized for 8-second clips to ensure maximum quality and cinematic impact. This duration is perfect for social media content, advertisements, and quick storytelling. We're working on extended duration options for future releases."
-    },
-    {
-      question: "Can I use Veo 3 for commercial projects?",
-      answer: "Yes! Pro and Ultra plans include full commercial usage rights for your AI-generated videos. You can use them in marketing campaigns, client work, social media advertising, presentations, and even resell the content (Ultra plan only). Free plan videos include watermarks and are limited to personal use."
-    },
-    {
-      question: "What types of audio can Veo 3 generate?",
-      answer: "Veo 3 can generate ambient sounds, background music, dialogue with perfect lip-sync, sound effects, and atmospheric audio that matches your video content. Our advanced audio instructions allow you to specify everything from 'epic orchestral music' to 'gentle rain sounds with distant thunder' for complete creative control."
-    },
-    {
-      question: "Can I use Veo 3 videos on social media?",
-      answer: "Absolutely! Veo 3's 8-second format is perfect for social media platforms like Instagram Reels, TikTok, Twitter, LinkedIn, and Facebook. Pro and Ultra plans remove watermarks, making your content look professional and ready for any social platform or marketing campaign."
-    },
-    {
-      question: "Is Veo 3 easy to use for beginners?",
-      answer: "Yes! Our interface is designed for creators of all skill levels. Simply describe your vision in text (like 'sunset beach with waves'), optionally upload a reference image, add audio instructions, and click generate. No video editing experience required – the AI handles all the complex work."
-    },
-    {
-      question: "How does Veo 3 compare to other AI video tools?",
-      answer: "Veo 3 stands out with superior physics-based realism, native audio generation with lip-sync, and cinematic quality that rivals professional video production. Unlike other tools, we offer both text-to-video and image-to-video capabilities with advanced motion fidelity and realistic lighting simulation."
-    },
-    {
-      question: "How do AI video generation credits work?",
-      answer: "Each AI video generation consumes credits based on mode and quality. Fast mode uses 15 credits for basic text-to-video, Ultra mode uses 35-50 credits for premium AI-generated videos with advanced features. Credits refresh monthly and unused credits roll over for paid plans."
-    },
-    {
-      question: "Can I upgrade my AI video plan anytime?",
-      answer: "Yes! You can upgrade or downgrade your AI video generation plan at any time. Unused credits roll over to the next month for paid plans, and you'll have immediate access to new features upon upgrading."
-    },
-    {
-      question: "What's the AI-generated video length and quality?",
-      answer: "All AI-generated videos are 8 seconds long in various quality options: Standard (720p), High (1080p), and Ultra (4K). Each video includes cinematic motion, realistic physics, and optional audio with perfect synchronization."
-    },
-    {
-      question: "Is there a free AI video generator trial?",
-      answer: "Yes! The Free plan gives you 50 credits monthly to try our AI video generation platform. No credit card required to start creating AI videos. You can experience the full Veo 3 technology with basic features before upgrading."
-    }
-  ];
 
   return (
     <div className="min-h-screen bg-black pt-20">
@@ -293,34 +242,6 @@ const Pricing = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* Comprehensive FAQ Section */}
-        <div className="mb-16">
-          <div className="text-center mb-12">
-            <div className="flex items-center justify-center space-x-3 mb-6">
-              <HelpCircle className="w-12 h-12 text-cyan-400" />
-              <h2 className="text-5xl font-bold text-white">Veo 3 AI Video Generator FAQ</h2>
-            </div>
-            <p className="text-2xl text-gray-400 max-w-3xl mx-auto">
-              Everything you need to know about our Veo 3 AI video generation platform
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 gap-8 max-w-4xl mx-auto">
-            {faqs.map((faq, index) => (
-              <div key={index} className="bg-gray-900/50 border border-gray-800 rounded-2xl p-8 backdrop-blur-sm hover:border-cyan-500/30 transition-all duration-300">
-                <h3 className="text-xl font-bold text-white mb-4 flex items-start space-x-3">
-                  <span className="text-cyan-400 text-2xl">Q:</span>
-                  <span>{faq.question}</span>
-                </h3>
-                <div className="flex items-start space-x-3">
-                  <span className="text-purple-400 text-2xl font-bold">A:</span>
-                  <p className="text-gray-400 leading-relaxed text-lg">{faq.answer}</p>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
 

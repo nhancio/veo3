@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { ArrowRight, Play, Sparkles, Video, Upload, Mic, Zap, Crown, UserPlus, FileText, Settings, Download, ChevronLeft, ChevronRight, Twitter, ExternalLink } from 'lucide-react';
+import { useState } from 'react';
+import { ArrowRight, Play, Sparkles, Video, Upload, Mic, Crown, UserPlus, FileText, Settings, Download, ChevronLeft, ChevronRight, Twitter, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Homepage = () => {
@@ -63,28 +63,6 @@ const Homepage = () => {
     }
   ];
 
-  const showcaseVideos = [
-    {
-      title: "Mountain Eagle Soaring - AI Generated",
-      thumbnail: "https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=600",
-      alt: "AI-generated cinematic video of eagle soaring over mountains"
-    },
-    {
-      title: "Neon City Streets - Text to Video AI",
-      thumbnail: "https://images.pexels.com/photos/315191/pexels-photo-315191.jpeg?auto=compress&cs=tinysrgb&w=600",
-      alt: "AI video generator creating neon cyberpunk city scene"
-    },
-    {
-      title: "Ocean Storm Waves - Realistic AI Video",
-      thumbnail: "https://images.pexels.com/photos/1001682/pexels-photo-1001682.jpeg?auto=compress&cs=tinysrgb&w=600",
-      alt: "Realistic AI-generated video of ocean storm waves"
-    },
-    {
-      title: "Forest Mystique - AI Video Creator",
-      thumbnail: "https://images.pexels.com/photos/1496373/pexels-photo-1496373.jpeg?auto=compress&cs=tinysrgb&w=600",
-      alt: "AI video creation tool generating mystical forest scene"
-    }
-  ];
 
   // Real Veo 3 videos from Twitter
   const twitterVideos = [
@@ -248,13 +226,16 @@ const Homepage = () => {
               className="group bg-gradient-to-r from-cyan-500 to-purple-500 text-black px-10 py-5 rounded-full text-xl font-bold hover:from-cyan-400 hover:to-purple-400 transition-all duration-300 transform hover:scale-105 glow-button flex items-center space-x-3"
             >
               <Video className="w-6 h-6" />
-              <span>Start Creating AI Videos Now</span>
+              <span>Generate</span>
               <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
             </Link>
-            <button className="group bg-transparent border-2 border-gray-600 text-white px-10 py-5 rounded-full text-xl font-bold hover:border-cyan-400 hover:text-cyan-400 transition-all duration-300 flex items-center space-x-3">
+            <Link 
+              to="/my-creations"
+              className="group bg-transparent border-2 border-gray-600 text-white px-10 py-5 rounded-full text-xl font-bold hover:border-cyan-400 hover:text-cyan-400 transition-all duration-300 flex items-center space-x-3"
+            >
               <Play className="w-6 h-6" />
-              <span>See AI Video Examples</span>
-            </button>
+              <span>My Creations</span>
+            </Link>
           </div>
 
           {/* Stats */}
@@ -529,53 +510,7 @@ const Homepage = () => {
         </div>
       </section>
 
-      {/* Showcase Section */}
-      <section className="py-32">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <h2 className="text-5xl font-bold text-white mb-6">
-              AI-Generated Video Showcase
-            </h2>
-            <p className="text-2xl text-gray-400 max-w-3xl mx-auto mb-12">
-              Discover what's possible with our cinematic AI video generation technology
-            </p>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-            {showcaseVideos.map((video, index) => (
-              <div 
-                key={index}
-                className="group relative overflow-hidden rounded-2xl bg-gray-900 border border-gray-800 hover:border-cyan-500/50 transition-all duration-500 hover:transform hover:scale-105"
-              >
-                <div className="aspect-video relative overflow-hidden">
-                  <img
-                    src={video.thumbnail}
-                    alt={video.alt}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-300" />
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <button className="bg-white/20 backdrop-blur-sm rounded-full p-4 hover:bg-white/30 transition-colors">
-                      <Play className="w-8 h-8 text-white" />
-                    </button>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-white group-hover:text-cyan-400 transition-colors duration-300">
-                    {video.title}
-                  </h3>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center">
-            <button className="bg-transparent border-2 border-cyan-500 text-cyan-400 px-8 py-4 rounded-full text-xl font-semibold hover:bg-cyan-500 hover:text-black transition-all duration-300">
-              Explore AI Video Gallery
-            </button>
-          </div>
-        </div>
-      </section>
 
       {/* Final CTA Section */}
       <section className="py-32 bg-gradient-to-r from-gray-900 via-black to-gray-900">

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Video, Globe, Mail, FileText, Shield, CreditCard, Twitter, Github, Linkedin } from 'lucide-react';
+import { Video, Globe, FileText, Shield, CreditCard, Twitter, Linkedin } from 'lucide-react';
 
 const Footer = () => {
   const [selectedLanguage, setSelectedLanguage] = useState('en-US');
@@ -250,9 +250,6 @@ const Footer = () => {
                 <Twitter className="w-6 h-6 text-gray-400 hover:text-cyan-400 transition-colors" />
               </a>
               <a href="#" className="w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center hover:bg-gray-700 transition-colors">
-                <Github className="w-6 h-6 text-gray-400 hover:text-cyan-400 transition-colors" />
-              </a>
-              <a href="#" className="w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center hover:bg-gray-700 transition-colors">
                 <Linkedin className="w-6 h-6 text-gray-400 hover:text-cyan-400 transition-colors" />
               </a>
             </div>
@@ -278,11 +275,7 @@ const Footer = () => {
               <li><a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors text-lg">About</a></li>
               <li><a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors text-lg">Careers</a></li>
               <li><a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors text-lg">Blog</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors text-lg">Press Kit</a></li>
-              <li><a href="mailto:hello@veoai.com" className="text-gray-400 hover:text-cyan-400 transition-colors flex items-center space-x-2 text-lg">
-                <Mail className="w-5 h-5" />
-                <span>Contact</span>
-              </a></li>
+              <li><a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors text-lg">Contact Us</a></li>
             </ul>
           </div>
 
