@@ -17,24 +17,20 @@ const MyCreations = () => {
       if (!user) {
         setCreations([]);
         setLoading(false);
-        console.log('[DEBUG] No user found, skipping fetch.');
         return;
       }
       setLoading(true);
       setError(null);
-      console.log('[DEBUG] Fetching creations for user:', user.id);
       const { data, error } = await supabase
         .from('creations')
         .select('*')
-        .eq('user_id', user.id) // <-- use 'user_id' here!
+        .eq('user_id', user.id)
         .order('created_at', { ascending: false });
       if (error) {
         setError('Failed to load creations.');
         setCreations([]);
-        console.error('[DEBUG] Supabase fetch error:', error);
       } else {
         setCreations(data || []);
-        console.log('[DEBUG] Fetched creations:', data ? data.length : 0, data);
       }
       setLoading(false);
     };
@@ -146,6 +142,7 @@ const MyCreations = () => {
                 value={filterMode}
                 onChange={(e) => setFilterMode(e.target.value)}
                 className="px-4 py-3 bg-black/50 border border-gray-700 rounded-xl text-white focus:ring-2 focus:ring-cyan-500 focus:border-transparent text-lg"
+                title="Filter by video mode"
               >
                 <option value="all">All AI Video Modes</option>
                 <option value="fast">Fast Mode Videos</option>
@@ -158,6 +155,7 @@ const MyCreations = () => {
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
                 className="px-4 py-3 bg-black/50 border border-gray-700 rounded-xl text-white focus:ring-2 focus:ring-cyan-500 focus:border-transparent text-lg"
+                title="Sort videos"
               >
                 <option value="newest">Newest AI Videos First</option>
                 <option value="oldest">Oldest First</option>
